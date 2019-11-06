@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mfx="http://mfxV1_1/CltDatosGralInqV2">
+    <soapenv:Header>
+      <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" soapenv:mustUnderstand="1">
+          <wsse:UsernameToken>
+	    <wsse:Username>USRAPMBCER</wsse:Username>
+	    <wsse:Password wsse:Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">z3madraV</wsse:Password>      
+	  </wsse:UsernameToken>
+      </wsse:Security>
+    </soapenv:Header>   
+   <soapenv:Body>
+		      <mfx:MFX_CltDatosGralInq xmlns:mfx="http://mfxV1_1/CltDatosGralInqV2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         <mfx:CltDatosGralInqRq>
+            <mfx:RqUID>550e8400-e29b-41d4-a716-446655440000</mfx:RqUID>
+            <mfx:MsjRqHdr>
+               <mfx:SegRqHdr>
+                  <mfx:ProdEmpAutzFlg>0</mfx:ProdEmpAutzFlg>
+                  <mfx:ProdEspAutzFlg>0</mfx:ProdEspAutzFlg>
+                  <mfx:TrnNivelAutz>Normal</mfx:TrnNivelAutz>
+                  <mfx:CredencialRqHdrLst>
+                     <mfx:Ctd>1</mfx:Ctd>
+                     <mfx:CredencialRqHdr>
+                        <mfx:NroSec>1</mfx:NroSec>
+                        <mfx:SegRol>UsuarioApp</mfx:SegRol>
+                        <mfx:GenSesTokenFlg>0</mfx:GenSesTokenFlg>
+                        <mfx:SegTokenUsr>
+                           <mfx:Login>APMBCER</mfx:Login>
+                        </mfx:SegTokenUsr>
+                     </mfx:CredencialRqHdr>
+                  </mfx:CredencialRqHdrLst>
+               </mfx:SegRqHdr>
+               <mfx:CtxRqHdr>
+                  <mfx:ClientFec>2018-01-16T17:07:00-05:00</mfx:ClientFec>
+                  <mfx:ClientTrmId>
+                     <mfx:ClientTrmServ>LEA1</mfx:ClientTrmServ>
+                     <mfx:ClientTrmApp>K0000123</mfx:ClientTrmApp>
+                  </mfx:ClientTrmId>
+                  <mfx:OpnNro>01234888</mfx:OpnNro>
+                  <mfx:OpnExtornoNro>01234566</mfx:OpnExtornoNro>
+                  <mfx:ClientApp>
+                     <mfx:OrgCod>1</mfx:OrgCod>
+                     <mfx:ClientCod>P0</mfx:ClientCod>
+                  </mfx:ClientApp>
+                  <mfx:StoreForwardFlg>0</mfx:StoreForwardFlg>
+                  <mfx:ReenvioFlg>0</mfx:ReenvioFlg>
+                  <mfx:SucursalCod>001</mfx:SucursalCod>
+                  <mfx:ExtornoFlg>0</mfx:ExtornoFlg>
+                  <mfx:AgenciaCod>001</mfx:AgenciaCod>
+               </mfx:CtxRqHdr>
+            </mfx:MsjRqHdr>
+            <mfx:CltDatosGralInqRef>
+              <mfx:IDC>       </mfx:IDC>
+            </mfx:CltDatosGralInqRef>
+         </mfx:CltDatosGralInqRq>
+       </mfx:MFX_CltDatosGralInq>
+
+   </soapenv:Body>
+</soapenv:Envelope>

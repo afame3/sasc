@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<!--
+		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
+		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
+		<meta name="author" content="Codrops" />
+		-->
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+	
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+		<!--Script para flitrado 
+		<script>
+			$(document).ready(function () {
+		   $('#entradafilter').keyup(function () {
+			  var rex = new RegExp($(this).val(), 'i');
+				$('.contenidobusqueda tr').hide();
+				$('.contenidobusqueda tr').filter(function () {
+					return rex.test($(this).text());
+				}).show();
+
+				})
+
+		});
+		</script>
+		-->
+		<!--script para resaltar busqueda-->
+		<!--
+		<script src="js/jquery-latest.min.js"></script> 
+		<style>
+		.resaltar{background-color:#FF0;}
+		</style> 
+		<script type='text/javascript' >
+			$.expr[':'].icontains = function(obj, index, meta, stack){
+			return (obj.textContent || obj.innerText || jQuery(obj).text() || '').toLowerCase().indexOf(meta[3].toLowerCase()) >= 0;
+			};
+			$(document).ready(function(){   
+				$('#buscador').keyup(function(){
+							 buscar = $(this).val();
+							 $('#lista tr').removeClass('resaltar');
+									if(jQuery.trim(buscar) != ''){
+									   $("#lista tr:icontains('" + buscar + "')").addClass('resaltar');
+
+							}
+					});
+			});   
+		</script>
+		-->		
+	</head>
+
+    <body>
+		<?php include "views/navbarcom.phtml"; ?>
+		
+		
+        <div class="container">
+		<header>
+			<h2>Detalle de cotización Número: <?php echo isset($_GET["cotizacion_numero"]) ? $_GET["cotizacion_numero"] : NULL; ?></h2>
+		<!--div class="input-group"> <span class="input-group-addon">Filtrado</span>
+			<input id="entradafilter" type="text" class="form-control">
+		</div-->
+				
+                <table class="table table-dark" id="lista">
+
+                    <thead>
+                        <tr>
+                            <th>version</th>
+							<th>monto</th>
+							<th>comentario</th>
+                            <th>fecha</th>
+							<th>visita</th>
+							<!--th>adjunto</th-->
+							<th>pago</th>
+							<th>documento</th>
+							<!--th>condicion</th-->
+							<th>gasto</th>
+							<th></th>
+							<th></th>
+                        </tr>
+                    </thead>
+					<tbody class="contenidobusqueda">
+                    <?php foreach($model->Mostrar() as $r): ?>
+                        <tr>
+                            <td><?php echo $r->__GET('detalle_cotizacion_version'); ?></td>
+							<td><?php echo $r->__GET('detalle_cotizacion_monto'); ?></td>
+							<td><?php echo $r->__GET('detalle_cotizacion_comentario'); ?></td>
+                            <td><?php echo $r->__GET('detalle_cotizacion_fecha'); ?></td>
+							<td><?php echo $r->__GET('detalle_cotizacion_visita'); ?></td>
+							
+							<!--td><?php echo $r->__GET('detalle_cotizacion_adjunto'); ?></td-->
+							<td><?php echo $r->__GET('detalle_cotizacion_pago'); ?></td>
+							<td><?php echo $r->__GET('detalle_cotizacion_documento'); ?></td>
+							<!--td><?php echo $r->__GET('detalle_cotizacion_condicion'); ?></td-->
+							<td><?php echo $r->__GET('detalle_cotizacion_gasto'); ?></td>
+																					
+							<!--td><center><a href="list_detalle_cotizacion.php?action=editar&idcotizacion=<?php echo $r->idcotizacion; ?>" onClick="window.open(this.href, this.target, 'width=800,height=800'); return false;" ><img src="./images/imprimir.png" /></a></center></td-->
+							
+							<!--td><center><a href="detail_cotizacion.php?idcotizacion=<?php echo $r->idcotizacion; ?>&codigo_aplicativo=<?php echo $r->codigo_aplicativo; ?>" class="btn btn-default" type="button">Actualizar</a></center></td-->
+							<td><center><a target="_blank" href="<?php echo $r->__GET('detalle_cotizacion_adjunto_pdf'); ?>"><img src="./images/doc.png" /></a></center></td>
+							<td><center><a target="_blank" href="<?php echo $r->__GET('detalle_cotizacion_adjunto_word'); ?>"><img src="./images/word.png" /></a></center></td>
+							<td><center><a target="_blank" href="<?php echo $r->__GET('detalle_cotizacion_adjunto_excel'); ?>"><img src="./images/excel.png" /></a></center></td>
+							<td><center><a href="detail_detalle_cotizacion.php?action=editar&iddetalle_cotizacion=<?php echo $r->iddetalle_cotizacion; ?>" onClick="window.open(this.href, this.target, 'width=600,height=700'); return false;" ><img src="./images/lapiz.png" /></a></center></td>
+							
+							<td><center><a <a href="adjunto.php?action=editar&iddetalle_cotizacion=<?php echo $r->iddetalle_cotizacion; ?>" onClick="window.open(this.href, this.target, 'width=600,height=300'); return false;" ><img src="./images/adjuntar.png" /></a></center></td>
+							
+							<td><?php if ($r->__GET('detalle_cotizacion_estado')=='Registrado'){echo '<img src="./images/sem_blanco.png"/>';}elseif ($r->__GET('detalle_cotizacion_estado')=='Pendiente'){echo '<img src="./images/sem_ambar.png"/>';}elseif ($r->__GET('detalle_cotizacion_estado')=='Aprobado'){echo '<img src="./images/sem_verde.png"/>';}else {echo '<img src="./images/sem_rojo.png"/>';}; ?></td>
+											
+							
+                        </tr>
+                    <?php endforeach; ?>
+					
+					<!--tr>
+							<td colspan="3">
+								<input type="button"  value="Regresar" class="pure-button pure-button-primary" onclick="history.back()">
+								<input type="button"  value="Cancelar" class="pure-button pure-button-primary" onclick=" location.href='http://qtctsqlc01/hav/' ">
+							</td>
+                            
+                    </tr-->
+					</tbody>
+                </table>
+						<input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()">
+						<!--input align="right" type="button"  value="Nuevo" class="btn btn-default" onclick="location.href='new_detalle_cotizacion.php?action=editar&idcotizacion=<?php echo $_GET["idcotizacion"]; ?>'"-->
+						<input align="right" type="button"  value="Nuevo" class="btn btn-default" onclick="window.open(this.href='new_detalle_cotizacion.php?idcotizacion=<?php echo $_GET["idcotizacion"]; ?>', this.target, 'width=600,height=700'); return false;" >
+						<!--desa-->
+						<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="location.href='index.php'">
+						<!--prod-->
+						<!--input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://qtctsqlc01:8888/hav/' "-->
+</header>
+              </div>
+		
+
+    </body>
+</html>

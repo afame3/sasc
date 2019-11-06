@@ -1,0 +1,101 @@
+<?php
+/*
+session_start();
+if(!isset($_SESSION["idusuario"]) || $_SESSION["idusuario"]==null){
+	print "<script>alert(\"Acceso invalido!\");window.location='login.php';</script>";
+}
+*/
+?>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+		
+		<script language='JavaScript'>
+
+		function enviaycierra(){
+				
+			if (confirm('Dar "Cancelar" si tiene campos en blanco, de lo contrario "Aceptar"')){
+				
+				document.form1.submit();
+				
+				alert("Se registró la empresa");
+				
+				window.opener.document.location.reload(); //refresca la pagina principal
+				
+				window.close(); //cierro el pop up
+			}
+		}
+				
+		</script>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	</head>
+
+    <body>
+		<?php include "views/navbarpopup.phtml"; ?>	
+        <div class="container">
+		<header>	
+			<h2>Ingresar Nueva Empresa</h2>
+
+                <form name="form1" action="?action=<?php echo $emp->idempresa > 0 ? 'actualizar' : 'registrar'; ?>" method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+					<input type="hidden" name="idempresa" value="<?php echo $emp->__GET('idempresa'); ?>" />
+                <table class="table table-dark">
+				    <!--tr>
+                        <th>empresa_numero</th>
+                        <td><input type="text" name="empresa_numero" value="<?php echo $emp->__GET('empresa_numero'); ?>" style="width:100%;" required/ ></td>
+                    </tr-->
+					<tr>
+                        <th>empresa_razon_social</th>
+                        <td><input type="text" name="empresa_razon_social" value="<?php echo $emp->__GET('empresa_razon_social'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_ruc</th>
+                        <td><input type="text" name="empresa_ruc" value="<?php echo $emp->__GET('empresa_ruc'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_direccion</th>
+                        <td><input type="text" name="empresa_direccion" value="<?php echo $emp->__GET('empresa_direccion'); ?>" style="width:100%;" ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_telefono</th>
+                        <td><input type="text" name="empresa_telefono" value="<?php echo $emp->__GET('empresa_telefono'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_contacto</th>
+                        <td><input type="text" name="empresa_contacto" value="<?php echo $emp->__GET('empresa_contacto'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_correo</th>
+                        <td><input type="text" name="empresa_correo" value="<?php echo $emp->__GET('empresa_correo'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>	
+						<th colspan="2" style="text-align:left;"><button type="submit" class="btn btn-default" onclick="javascript:enviaycierra();">Guardar</button>
+
+								<!--input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()" -->
+								
+								<!--desa-->
+								<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="location.href='index.php' ">
+								<!--prod-->
+								<!--input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="window.close();"-->
+                         </th>
+                     </tr>
+                </table>
+
+			</form>
+		</header>
+        </div>
+
+    </body>
+</html>

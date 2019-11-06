@@ -1,0 +1,49 @@
+/* tabla generica */
+.tabla {
+    border-collapse: collapse;
+    border: 0px;
+    padding: 0px;
+}
+
+.tabla td, .tabla th {
+    border: 0px;
+    padding: 0px;
+}
+
+/* para formularios */
+.tablaForm {
+    border-collapse: separate;
+    border: 0px;
+    padding: 0px;
+}
+
+.tablaForm td {
+    border: 0px;
+    padding: 0px 2px;
+}
+
+/* para consultas */
+.tablaQry {
+    border: 0px solid #999;
+    border-collapse: collapse;
+    margin: auto;
+    text-align:center;
+}
+
+.tablaQry thead tr td, .tablaQry tbody tr td,
+.tablaQry thead tr th, .tablaQry tbody tr th {
+    border: 0px solid #999;
+}
+
+.tablaQry thead tr td {
+    font-weight:bold;
+}
+
+.tablaQry tbody tr th, .tablaQry thead tr th {
+    text-align:center;
+}
+
+            table thead {
+                color: #ffffff;
+                background-color: #999999;
+}

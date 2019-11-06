@@ -1,0 +1,44 @@
+<?php session_start(); ?>
+<html lang="en">
+	<head>
+		<title>.: HAV :.</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+	<?php include "views/navbar.phtml"; ?>
+        <div class="container">
+
+		<h2>Login</h2>
+
+
+		<form role="form" name="login" action="?action=<?php echo $usu->idusuario > 0 ? 'actualizar' : 'login'; ?>" method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+			<input type="hidden" name="idusuario" value="<?php echo $usu->__GET('idusuario'); ?>" />
+		    
+			<table class="table table-bordered table-striped">
+                        <tr>
+                            <th>matricula</th>
+                            <td><input type="text" name="matricula" value="<?php echo $usu->__GET('matricula'); ?>" style="width:100%;" /></td>
+                        </tr>
+                        <tr>
+                            <th>clave</th>
+                            <td><input type="password" name="clave" value="<?php echo $usu->__GET('clave'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+							<td colspan="2">
+							<button type="submit" class="btn btn-default">Acceder</button>
+                            </td>
+                        </tr>
+			</table>
+         
+		 </form>
+
+		
+		</div>
+
+			<script src="js/valida_login.js"></script>
+	</body>
+</html>

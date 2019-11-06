@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+	
+
+		<script language='JavaScript'>
+		function enviaycierra(){
+			if (confirm('Dar "Cancelar" si tiene campos en blanco, de lo contrario "Aceptar"')){
+				document.form1.submit();
+					alert("Se actualizó la cotización");
+				window.opener.document.location.reload(); //refresca la pagina principal
+				window.close(); //cierro el pop up
+			}
+		}
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	</head>
+
+    <body>
+		<?php include "views/navbarpopup.phtml"; ?>	
+        <div class="container">
+		<header>	
+			<h2>Actualizar Detalle Cotización <?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?></h2>
+				
+                <form name="form1" action="?action=<?php echo $dco->iddetalle_cotizacion > 0 ? 'actualizar' : 'registrar'; ?>" method="post" >
+						
+					<input type="hidden" name="iddetalle_cotizacion" value="<?php echo $dco->__GET('iddetalle_cotizacion'); ?>" />
+                <table class="table table-dark">
+					<tr>
+                        <th>version</th>
+                        <td><input type="text" name="detalle_cotizacion_version" value="<?php echo $dco->__GET('detalle_cotizacion_version'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>monto</th>
+                        <td><input type="text" name="detalle_cotizacion_monto" value="<?php echo $dco->__GET('detalle_cotizacion_monto'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					
+					<tr>
+                        <th>visita</th>
+						<td>
+						<select name="detalle_cotizacion_visita" style="width:100%;">
+									<option value="SI" <?php echo $dco->__GET('detalle_cotizacion_visita') == 'SI' ? 'selected' : ''; ?>>SI</option>
+                                    <option value="NO" <?php echo $dco->__GET('detalle_cotizacion_visita') == 'NO' ? 'selected' : ''; ?>>NO</option>
+									
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<!--tr>
+                        <th>adjunto</th>
+                        <td><input type="text" name="detalle_cotizacion_adjunto" value="<?php echo $dco->__GET('detalle_cotizacion_adjunto'); ?>" style="width:100%;" required/ ></td>
+                    </tr-->
+					<tr>
+                        <th>pago</th>
+                        <!--td><input type="text" name="detalle_cotizacion_pago" value="<?php echo $dco->__GET('detalle_cotizacion_pago'); ?>" style="width:100%;" required/ ></td-->
+						<td>
+						<select name="detalle_cotizacion_pago" style="width:100%;">
+									<option value="50% adelanto/50% al final" <?php echo $dco->__GET('detalle_cotizacion_pago') == '50% adelanto/50% al final' ? 'selected' : ''; ?>>50% adelanto/50% al final</option>
+                                    <option value="Pago adelantado" <?php echo $dco->__GET('detalle_cotizacion_pago') == 'Pago adelantado' ? 'selected' : ''; ?>>Pago adelantado</option>
+									<option value="A 60 días" <?php echo $dco->__GET('detalle_cotizacion_pago') == 'A 60 días' ? 'selected' : ''; ?>>A 60 días</option>
+									<option value="A 30 días" <?php echo $dco->__GET('detalle_cotizacion_pago') == 'A 30 días' ? 'selected' : ''; ?>>A 30 días</option>
+									<option value="Sin factura" <?php echo $dco->__GET('detalle_cotizacion_pago') == 'Sin factura' ? 'selected' : ''; ?>>Sin factura</option>
+									<option value="Otro" <?php echo $dco->__GET('detalle_cotizacion_pago') == 'Otro' ? 'selected' : ''; ?>>Otro</option>
+									
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<tr>
+                        <th>documento</th>
+                        <!--td><input type="text" name="detalle_cotizacion_documento" value="<?php echo $dco->__GET('detalle_cotizacion_documento'); ?>" style="width:100%;" required/ ></td-->
+						<td>
+						<select name="detalle_cotizacion_documento" style="width:100%;">
+									<option value="Orden de Servicio" <?php echo $dco->__GET('detalle_cotizacion_documento') == 'Orden de Servicio' ? 'selected' : ''; ?>>Orden de Servicio</option>
+                                    <option value="Contrato" <?php echo $dco->__GET('detalle_cotizacion_documento') == 'Contrato' ? 'selected' : ''; ?>>Contrato</option>
+									<option value="Otro" <?php echo $dco->__GET('detalle_cotizacion_documento') == 'Otro' ? 'selected' : ''; ?>>Otro</option>
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<tr>
+                        <th>condicion</th>
+                        <td><input type="text" name="detalle_cotizacion_condicion" value="<?php echo $dco->__GET('detalle_cotizacion_condicion'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>gasto</th>
+                        <td><input type="text" name="detalle_cotizacion_gasto" value="<?php echo $dco->__GET('detalle_cotizacion_gasto'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+						<th>estado</th>
+                            <td>
+                                <select name="detalle_cotizacion_estado" style="width:100%;">
+                                    <option value="Registrado" <?php echo $dco->__GET('detalle_cotizacion_estado') == 'Registrado' ? 'selected' : ''; ?>>Registrado</option>
+                                    <option value="Pendiente" <?php echo $dco->__GET('detalle_cotizacion_estado') == 'Pendiente' ? 'selected' : ''; ?>>Pendiente</option>
+									<option value="Aprobado" <?php echo $dco->__GET('detalle_cotizacion_estado') == 'Aprobado' ? 'selected' : ''; ?>>Aprobado</option>
+									<option value="Rechazado" <?php echo $dco->__GET('detalle_cotizacion_estado') == 'Rechazado' ? 'selected' : ''; ?>>Rechazado</option>
+									
+                                </select>
+                            </td>
+					</tr>
+					<tr>
+                        <th>detalle_cotizacion_comentario</th>
+                        <td><textarea name="detalle_cotizacion_comentario" value="<?php echo $dco->__GET('detalle_cotizacion_comentario'); ?>" rows="5" cols="40" style="width:100%;" required/ ><?php echo $dco->__GET('detalle_cotizacion_comentario'); ?></textarea></td>
+					</tr>
+					<tr>	
+						<th colspan="2" style="text-align:left;">
+						<button type="submit" class="btn btn-default" onclick="javascript:enviaycierra();">Guardar</button>
+						<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="window.close();">
+                        </th>
+                     </tr>
+                </table>
+
+			</form>
+		</header>
+        </div>
+
+    </body>
+</html>

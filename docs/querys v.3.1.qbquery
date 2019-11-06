@@ -1,0 +1,74 @@
+﻿select * from cotizacion;
+SELECT * FROM empresa e;
+SELECT * FROM detalle_cotizacion d;
+
+INSERT INTO empresa (empresa_numero,empresa_razon_social,empresa_ruc,empresa_estado,empresa_direccion,empresa_telefono,empresa_contacto,empresa_correo)
+		        VALUES (1,' ' ,' ',' ',' ',' ',' ',' ');
+
+select c.idcotizacion,c.numero_cotizacion,dc.detalle_cotizacion_estado,emp.razon_social,em.nombre_empleado,c.descripcion_cotizacion,c.fecha_cotizacion,c.observacion_cotizacion,c.sub_total,c.fecha_observacion,c.version,c.visita,c.link_documento,c.link_adjunto from cotizacion c
+inner join empresa emp on c.empresa_idempresa=emp.idempresa
+inner join empleado em on c.empleado_idempleado=em.idempleado where c.estado_cotizacion in ('Registrado','Pendiente','Aprobada') order by numero_cotizacion desc;
+
+
+select c.idcotizacion,c.cotizacion_numero,c.cotizacion_fecha,c.cotizacion_descripcion,emp.empresa_razon_social,
+eml.empleado_nombre,c.cotizacion_estado
+from cotizacion c
+inner join empresa emp on c.empresa_idempresa=emp.idempresa
+inner join empleado eml on c.empleado_idempleado=eml.idempleado where c.cotizacion_estado in ('Registrado','Pendiente','Aprobado')
+order by c.cotizacion_numero desc;
+
+insert into detalle_cotizacion (
+detalle_cotizacion_version,
+detalle_cotizacion_monto,
+detalle_cotizacion_comentario,
+detalle_cotizacion_fecha,
+detalle_cotizacion_visita,
+detalle_cotizacion_adjunto,
+detalle_cotizacion_pago,
+detalle_cotizacion_documento,
+detalle_cotizacion_condicion,
+detalle_cotizacion_gasto,
+detalle_cotizacion_estado,
+cotizacion_idcotizacion)
+values('2','110','comentario dos',now(),'SI','www.adjunto','Pago Adelantado','Orden de Servicio','condicion2','170','Registrado',1);
+
+
+select c.idcotizacion,c.cotizacion_numero,c.cotizacion_estado,emp.empresa_razon_social,em.empleado_nombre,c.cotizacion_descripcion,c.cotizacion_fecha
+from cotizacion c
+inner join empresa emp on c.empresa_idempresa=emp.idempresa
+inner join empleado em on c.empleado_idempleado=em.idempleado
+WHERE c.idcotizacion = 1;
+
+select iddetalle_cotizacion,detalle_cotizacion_version,detalle_cotizacion_monto,detalle_cotizacion_comentario,
+detalle_cotizacion_fecha,detalle_cotizacion_visita,detalle_cotizacion_adjunto,detalle_cotizacion_pago,
+detalle_cotizacion_documento,detalle_cotizacion_condicion,detalle_cotizacion_gasto,detalle_cotizacion_estado,cotizacion_idcotizacion
+from detalle_cotizacion
+where cotizacion_idcotizacion=1
+order by detalle_cotizacion_fecha desc;
+
+insert into detalle_cotizacion (
+						detalle_cotizacion_version,
+						detalle_cotizacion_monto,
+						detalle_cotizacion_comentario,
+						detalle_cotizacion_fecha,
+						detalle_cotizacion_visita,
+						detalle_cotizacion_adjunto,
+						detalle_cotizacion_pago,
+						detalle_cotizacion_documento,
+						detalle_cotizacion_condicion,
+						detalle_cotizacion_gasto,
+						detalle_cotizacion_estado,
+						cotizacion_idcotizacion)
+		        VALUES ('3',100,'1',now(),'SI','1','Sin factura','1','1',120,'Pendiente',1);
+
+select iddetalle_cotizacion,detalle_cotizacion_version,detalle_cotizacion_monto,detalle_cotizacion_comentario,
+detalle_cotizacion_fecha,detalle_cotizacion_visita,detalle_cotizacion_adjunto,detalle_cotizacion_pago,
+detalle_cotizacion_documento,detalle_cotizacion_condicion,detalle_cotizacion_gasto,detalle_cotizacion_estado,cotizacion_idcotizacion
+from detalle_cotizacion
+where cotizacion_idcotizacion=1;
+
+select iddetalle_cotizacion,detalle_cotizacion_version,detalle_cotizacion_monto,detalle_cotizacion_comentario,
+detalle_cotizacion_fecha,detalle_cotizacion_visita,detalle_cotizacion_adjunto,detalle_cotizacion_pago,
+detalle_cotizacion_documento,detalle_cotizacion_condicion,detalle_cotizacion_gasto,detalle_cotizacion_estado,cotizacion_idcotizacion
+from detalle_cotizacion;
+where iddetalle_cotizacion=1;

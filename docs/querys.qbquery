@@ -1,0 +1,23 @@
+﻿select * from area;
+select * from campo;
+select * from cotizacion;
+select * from detalle_campo;
+select * from empleado;
+select * from empresa;
+select * from riesgo;
+
+insert into campo(codigo,version,fecha_emision,empleado_idempleado)
+values ('FOR-COM-001','001',now(),1);
+
+insert into riesgo(numero_riesgo,tipo_riesgo,parametro_medicion,equipo_herramienta,costo_unitario)
+values(2,'Riesgos Físicos','Personal Administrativo','Formato de evaluación/Cámara fotográfica',50),
+(3,'Riesgos Físicos','Personal Administrativo/Operativo','Formato de evaluación/Cámara fotográfica',55),
+(4,'Riesgos Físicos','Personal Operativo','Formato de evaluación/Equipo de filmación',60);
+
+insert into detalle_campo(numero,numero_trabajador,punto,costo_parametro,campo_idcampo,riesgo_idriesgo,area_idarea)
+values(4,1,1,60*1,1,4,4);
+
+select c.codigo,a.nombre_area,r.parametro_medicion,dc.numero_trabajador,dc.punto,r.costo_unitario,dc.costo_parametro from detalle_campo dc
+inner join campo c on c.idcampo=dc.campo_idcampo
+inner join riesgo r on r.idriesgo=dc.riesgo_idriesgo
+inner join area a on a.idarea=dc.area_idarea;

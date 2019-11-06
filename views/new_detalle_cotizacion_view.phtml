@@ -1,0 +1,149 @@
+<?php
+/*
+session_start();
+if(!isset($_SESSION["idusuario"]) || $_SESSION["idusuario"]==null){
+	print "<script>alert(\"Acceso invalido!\");window.location='login.php';</script>";
+}
+*/
+?>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+		
+
+		<script language='JavaScript'>
+		function enviaycierra(){
+			if (confirm('Dar "Cancelar" si tiene campos en blanco, de lo contrario "Aceptar"')){
+				document.form1.submit();
+				alert("Se actualizó la cotización");
+				window.opener.document.location.reload(); //refresca la pagina principal
+				window.close(); //cierro el pop up
+			}
+		}
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		
+	</head>
+
+    <body>
+		<?php include "views/navbarpopup.phtml"; ?>	
+        <div class="container">
+		
+		<header>	
+			<h2>Nuevo Detalle de Cotización <?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?></h2>
+
+                <form name="form1" action="?action=<?php echo $dco->iddetalle_cotizacion > 0 ? 'actualizar' : 'registrar'; ?>" method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+				
+					<input type="hidden" name="iddetalle_cotizacion" value="<?php echo $dco->__GET('iddetalle_cotizacion'); ?>" />
+					<input type="hidden" name="cotizacion_idcotizacion" value="<?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?>" />
+					<table class="table table-dark">
+				    <tr>
+                        <th>version</th>
+                        <td><input type="text" name="detalle_cotizacion_version" value="<?php echo $dco->__GET('detalle_cotizacion_version'); ?>" style="width:100%;" required/ ></td>
+						<th></th>
+                    </tr>
+					<tr>
+                        <th>monto</th>
+                        <td><input type="text" name="detalle_cotizacion_monto" value="<?php echo $dco->__GET('detalle_cotizacion_monto'); ?>" style="width:100%;" required/ ></td>
+						<th></th>
+                    </tr>
+					<tr>
+                        <th>visita</th>
+						<td>
+						<select name="detalle_cotizacion_visita" style="width:100%;">
+									<option>SI</option>
+									<option>NO</option>
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<!--tr>
+                        <th>adjunto</th>
+                        <td><input type="text" name="detalle_cotizacion_adjunto" value="<?php echo $dco->__GET('detalle_cotizacion_adjunto'); ?>" style="width:100%;" required/ ></td>
+						<th></th>
+                    </tr-->
+					<tr>
+                        <th>pago</th>
+						<td>
+						<select name="detalle_cotizacion_pago" style="width:100%;">
+									<option>50% adelanto/50% al final</option>
+									<option>Pago adelantado</option>
+									<option>A 30 días</option>
+									<option>A 60 días</option>
+									<option>Sin factura</option>
+									<option>Otro</option>
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<tr>
+                        <th>documento</th>
+						<td>
+						<select name="detalle_cotizacion_documento" style="width:100%;">
+									<option>Oden de Servicio</option>
+									<option>Contrato</option>
+									<option>Otro</option>
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<!--tr>
+                        <th>condicion</th>
+                        <td><input type="text" name="detalle_cotizacion_condicion" value="<?php echo $dco->__GET('detalle_cotizacion_condicion'); ?>" style="width:100%;" required/ ></td>
+						<th></th>
+                    </tr-->					
+					<tr>
+                        <th>gasto</th>
+                        <td><input type="text" name="detalle_cotizacion_gasto" value="<?php echo $dco->__GET('detalle_cotizacion_gasto'); ?>" style="width:100%;" required/ ></td>
+						<th></th>
+                    </tr>
+					<tr>
+                        <th>estado</th>
+						<td>
+						<select name="detalle_cotizacion_estado" style="width:100%;">
+									<option>Registrado</option>
+									<option>Pendiente</option>
+									<option>Aprobado</option>
+									<option>Rechazado</option>
+						</select>
+						</td>
+                        <th></th>
+                    </tr>
+					<tr>
+                        <th>comentario</th>
+                        <td><textarea name="detalle_cotizacion_comentario" value="<?php echo $dco->__GET('detalle_cotizacion_comentario'); ?>" rows="5" cols="40" style="width:100%;" required/ ></textarea></td>
+						<th></th>
+                    </tr>
+					<tr>
+					<th colspan="2" style="text-align:left;">
+						<button type="submit" class="btn btn-default" onclick="javascript:enviaycierra();">Guardar</button>
+						<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="window.close();">
+                        
+						
+						<!--input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()"-->
+						<!--button type="submit" class="btn btn-default" onclick="location.href='list_detalle_cotizacion.php?idcotizacion=<?php echo $_GET["idcotizacion"]; ?>'">Guardar</button-->						
+						<!--input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="location.href='list_detalle_cotizacion.php?idcotizacion=<?php echo $_GET["idcotizacion"]; ?>'"-->
+                    </th>
+						<th></th>
+                     </tr>
+                </table>
+ 
+			</form>
+		</header>
+        </div>
+
+    </body>
+</html>

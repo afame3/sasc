@@ -1,0 +1,185 @@
+<?php
+/*
+session_start();
+if(!isset($_SESSION["idusuario"]) || $_SESSION["idusuario"]==null){
+	print "<script>alert(\"Acceso invalido!\");window.location='login.php';</script>";
+}
+*/
+?>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+	
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	</head>
+
+    <body>
+		<?php include "views/navbar.phtml"; ?>	
+        <div class="container">
+		<header>
+				<h2>Agregar Riesgos</h2>
+				
+				<form action="?action=<?php echo $dca->iddetalle_campo > 0 ? 'actualizar' : 'registrar'; ?>" method="post" style="margin-bottom:30px;">
+					<input type="hidden" name="iddetalle_campo" value="<?php echo $dca->__GET('iddetalle_campo'); ?>" />
+                    
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>sol_tecnico</th>
+                            <td><input type="text" name="sol_tecnico" value="<?php echo $cal->__GET('sol_tecnico'); ?>" style="width:100%;" required/ ></td>
+                        </tr>
+						<!--
+                        <tr>
+                            <th style="text-align:left;">fecha_estimada</th>
+                            <td><input type="text" name="fecha_estimada" value="<?php echo $cal->__GET('fecha_estimada'); ?>" style="width:100%;" /></td>
+                        </tr>
+						-->
+						<tr>
+                            <th>hora_estimada</th>
+                            <td><input type="text" name="hora_estimada" value="<?php echo $cal->__GET('hora_estimada'); ?>" style="width:100%;" required/ ></td>
+                        </tr>
+						<tr>
+                            <th>regresion_total</th>
+                            <td>
+                                <select name="regresion_total" style="width:100%;">
+                                    <option value="1" <?php echo $cal->__GET('regresion_total') == 1 ? 'selected' : ''; ?>>Si</option>
+                                    <option value="0" <?php echo $cal->__GET('regresion_total') == 0 ? 'selected' : ''; ?>>No</option>
+                                </select>
+                            </td>
+							
+                        </tr>
+						<tr>
+                            <th>porcentaje_regresion</th>
+							<?php foreach($ida->Ida() as $i): ?>
+                            <td><input type="text" readonly="readonly" name="porcentaje_regresion" value="<?php echo $i->__GET('porcentaje_regresion'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						<tr>
+                            <th>porcentaje_mejora</th>
+							<?php foreach($ida->Ida() as $i): ?>
+                            <td><input type="text" readonly="readonly" name="porcentaje_mejora" value="<?php echo $i->__GET('porcentaje_mejora'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						<tr>
+                            <th>porcentaje_regresion_manual</th>
+                            <td><input type="text" name="porcentaje_regresion_manual" value="<?php echo $cal->__GET('porcentaje_regresion_manual'); ?>" style="width:100%;" required/ ></td>
+                        </tr>
+						<!--
+						<tr>
+                            <th style="text-align:left;">Estado</th>
+                            <td>
+                                <select name="estado" style="width:100%;">
+								                    							
+                                    <option value="1" <?php echo $cal->__GET('estado') == 1 ? 'selected' : ''; ?>>Activo</option>
+                                    <option value="0" <?php echo $cal->__GET('estado') == 0 ? 'selected' : ''; ?>>Inactivo</option>
+                                </select>
+                            </td>
+						</tr>
+						-->
+						<!--tr>
+                            <th style="text-align:left;">Codigo</th>
+							 <td><input type="text" name="codigo" value="<?php echo $_POST['codigo']; ?>" style="width:100%;" /></td>
+                            <td>
+                                <select name="codigo" style="width:100%;">
+									<?php foreach($cod->Codigo() as $c): ?>
+									<option value="<?php echo $c->__GET('codigo_aplicativo'); ?>"><?php echo $c->__GET('codigo_aplicativo'); ?></option>
+									<?php endforeach; ?>
+                                </select>
+                            </td>
+						</tr-->
+						<tr>
+                            <th>idaplicativo</th>
+							<?php foreach($ida->Ida() as $i): ?>
+				            <td><input type="text" readonly="readonly" name="idaplicativo" value="<?php echo $i->__GET('idaplicativo'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						<tr>
+                            <th>codigo_aplicativo</th>
+							<?php foreach($ida->Ida() as $i): ?>
+				            <td><input type="text" readonly="readonly" name="codigo_aplicativo" value="<?php echo $i->__GET('codigo_aplicativo'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						<tr>
+                            <th>idusuario</th>
+							<?php foreach($usu->Idusuario() as $u): ?>
+                            <td><input type="text" readonly="readonly" name="idusuario" value="<?php echo $u->__GET('idusuario'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						<tr>
+                            <th>matricula</th>
+							<?php foreach($usu->Idusuario() as $u): ?>
+                            <td><input type="text" readonly="readonly" name="matricula" value="<?php echo $u->__GET('matricula'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>	
+						<tr>
+                            <th>nombre_usuario</th>
+							<?php foreach($usu->Idusuario() as $u): ?>
+                            <td><input type="text" readonly="readonly" name="nombre_usuario" value="<?php echo $u->__GET('nombre_usuario'); ?>" style="width:100%;" /></td>
+							<?php endforeach; ?>
+                        </tr>
+						
+						<tr>
+                            <th>nombre_requerimiento</th>
+                            <td><input type="text" name="nombre_requerimiento" value="<?php echo $cal->__GET('nombre_requerimiento'); ?>" style="width:100%;" /></td>
+                        </tr>	
+						
+                        <tr>
+                            <td colspan="2">
+								<input type="button"  value="Nuevo" class="btn btn-default" onclick="history.back()">
+                                <button type="submit" type="hidden" class="btn btn-default">Estimar</button>
+								
+								<!--desa-->
+								<input type="button"  value="Cancelar" class="btn btn-default" onclick="location.href='location.href='index.php'" >
+								<!--prod-->
+								<!--input type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://qtctsqlc01:8888/hav/' "-->
+								
+							</td>
+                        </tr>
+                    </table>
+                </form>
+
+<!--			
+                <table class="pure-table pure-table-horizontal">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">ST</th>
+							<th style="text-align:center;">Aplicativo</th>
+							<th style="text-align:center;">nombre_requerimiento</th>
+							<th style="text-align:center;">Usuario</th>
+							<th style="text-align:center;">Fecha Estimación</th>
+							<th style="text-align:center;">Horas Estimadas</th>
+							<th style="text-align:center;">Horas Estimadas Finales</th>
+							
+                        </tr>
+                    </thead>
+                    <?php foreach($model->Listar() as $r): ?>
+                        <tr>
+                            <td style="text-align:center;"><?php echo $r->__GET('sol_tecnico'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('aplicativo'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('nombre_requerimiento'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('usuario'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('fecha_estimada'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('hora_estimada'); ?></td>
+							<td style="text-align:center;"><?php echo $r->__GET('hora_estimada_final'); ?></td>
+							
+                        </tr>
+                    <?php endforeach; ?>
+                </table> 
+-->		
+</header>
+        </div>
+
+    </body>
+</html>

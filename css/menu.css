@@ -1,0 +1,18 @@
+a:active, a:link, a:visited	{
+    color: #444;
+    font-size: 12px;
+    font-weight:bold;
+    text-decoration: none;
+    font-family: Tahoma,Verdana,Arial;
+}
+
+A:hover 	{
+    color: #009;
+    font-size: 12px;
+    font-weight:bold;
+    text-decoration: underline;
+    font-family: Tahoma,Verdana,Arial;
+}
+
+
+

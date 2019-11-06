@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+	
+
+		<script language='JavaScript'>
+		function enviaycierra(){
+			if (confirm('Dar "Cancelar" si tiene campos en blanco, de lo contrario "Aceptar"')){
+				document.form1.submit();
+					alert("Se actualizó la cotización");
+				window.opener.document.location.reload(); //refresca la pagina principal
+				window.close(); //cierro el pop up
+			}
+		}
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	</head>
+
+    <body>
+		<?php include "views/navbarpopup.phtml"; ?>	
+        <div class="container">
+		<header>	
+			<h2>Actualizar Cotización Número:<?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?></h2>
+				
+                <form name="form1" action="?action=<?php echo $cot->idcotizacion > 0 ? 'actualizar' : 'registrar'; ?>" method="post" >
+						
+					<input type="hidden" name="idcotizacion" value="<?php echo $cot->__GET('idcotizacion'); ?>" />
+                <table class="table table-dark">
+					<tr>
+                        <th>numero</th>
+                        <td><input type="text" name="cotizacion_numero" value="<?php echo $cot->__GET('cotizacion_numero'); ?>" style="width:100%;" required/ ></td>
+                    </tr>
+					<tr>
+                        <th>empresa_razon_social</th>
+                        <td><input type="text" readonly="readonly" name="empresa_razon_social" value="<?php echo $cot->__GET('empresa_razon_social'); ?>" style="width:100%;" required/ ></td>
+						<!--th><a href="new_empresa.php" onClick="window.open(this.href, this.target, 'width=600,height=600'); return false;" ><img src="./images/nuevo.png" /></a>
+						</th-->
+                    </tr>
+					<tr>
+                        <th>empleado_nombre</th>
+                        <td><input type="text" readonly="readonly" name="empleado_nombre" value="<?php echo $cot->__GET('empleado_nombre'); ?>" style="width:100%;" required/ ></td>
+						<!--th><a href="new_empresa.php" onClick="window.open(this.href, this.target, 'width=600,height=600'); return false;" ><img src="./images/nuevo.png" /></a>
+						</th-->
+                    </tr>
+					
+					<tr>
+						<th>cotizacion_descripcion</th>
+                            <td>
+                                <select name="cotizacion_descripcion" style="width:100%;">
+                                    <option value="Auditoria" <?php echo $cot->__GET('cotizacion_descripcion') == 'Auditoria' ? 'selected' : ''; ?>>Auditoria</option>
+                                    <option value="Capacitaciones" <?php echo $cot->__GET('cotizacion_descripcion') == 'Capacitaciones' ? 'selected' : ''; ?>>Capacitaciones</option>
+									<option value="Control Aviar" <?php echo $cot->__GET('cotizacion_descripcion') == 'Control Aviar' ? 'selected' : ''; ?>>Control Aviar</option>
+                                    <option value="Monitoreo Ocupacional" <?php echo $cot->__GET('cotizacion_descripcion') == 'Monitoreo Ocupacional' ? 'selected' : ''; ?>>Monitoreo Ocupacional</option>
+									<option value="Monitoreo Ambiental" <?php echo $cot->__GET('cotizacion_descripcion') == 'Monitoreo Ambiental' ? 'selected' : ''; ?>>Monitoreo Ambiental</option>
+                                    <option value="Residuos Sólidos" <?php echo $cot->__GET('cotizacion_descripcion') == 'Residuos Sólidos' ? 'selected' : ''; ?>>Residuos Sólidos</option>
+									<option value="Saneamiento" <?php echo $cot->__GET('cotizacion_descripcion') == 'Saneamiento' ? 'selected' : ''; ?>>Saneamiento</option>
+                                    <option value="SST" <?php echo $cot->__GET('cotizacion_descripcion') == 'SST' ? 'selected' : ''; ?>>SST</option>
+									<option value="Vigilancia Médica" <?php echo $cot->__GET('cotizacion_descripcion') == 'Vigilancia Médica' ? 'selected' : ''; ?>>Vigilancia Médica</option>
+                                </select>
+							</td>
+					</tr>
+					
+					<!--tr>
+                        <th>sub_total</th>
+                        <td><input type="text" name="sub_total" value="<?php echo $cot->__GET('sub_total'); ?>" style="width:100%;" required/ ></td>
+                    </tr-->
+					<!--tr>
+                        <th>observacion_cotizacion</th>
+                        <td><textarea name="observacion_cotizacion" value="<?php echo $cot->__GET('observacion_cotizacion'); ?>" rows="10" cols="40" style="width:100%;" required/ ></textarea></td>
+                    </tr-->
+					<tr>
+						<th>estado</th>
+                            <td>
+                                <select name="cotizacion_estado" style="width:100%;">
+                                    <option value="Registrado" <?php echo $cot->__GET('cotizacion_estado') == 'Registrado' ? 'selected' : ''; ?>>Registrado</option>
+                                    <option value="Pendiente" <?php echo $cot->__GET('cotizacion_estado') == 'Pendiente' ? 'selected' : ''; ?>>Pendiente</option>
+									<option value="Aprobado" <?php echo $cot->__GET('cotizacion_estado') == 'Aprobado' ? 'selected' : ''; ?>>Aprobado</option>
+									<option value="Rechazado" <?php echo $cot->__GET('cotizacion_estado') == 'Rechazado' ? 'selected' : ''; ?>>Rechazado</option>
+									
+                                </select>
+                            </td>
+						</tr>
+					<tr>	
+						<th colspan="2" style="text-align:left;"><button type="submit" class="btn btn-default" onclick="javascript:enviaycierra();">Guardar</button>
+
+								<!--input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()"-->
+								
+								<!--desa-->
+								<!--input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://localhost/sasc' "-->
+								<!--prod-->
+								<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick="window.close();">
+                         </th>
+                     </tr>
+                </table>
+
+			</form>
+		</header>
+        </div>
+
+    </body>
+</html>

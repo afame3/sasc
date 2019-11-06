@@ -1,0 +1,71 @@
+body {
+    background-color:#AAA;
+    margin:4px;
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 12px;
+    font-style: normal;
+    color: #445;
+    /* background-image: url(); */
+    
+}
+/* vamos a colocar la pagina al 100% */
+#main {
+    width: 100%;
+    margin: 0 auto;
+    padding-top:1px;
+    padding-bottom:1px;
+    background-color:#FFF;
+}
+
+#mainsup {
+    width: 100%;
+    margin: 0 auto;
+    
+}
+
+#mainsup2 {
+    width: 100%;
+    margin: 0 auto;
+    
+
+}
+#mainizq {
+    width: 100%;
+    float: left;
+    margin: 2px;
+}
+
+#maincen {
+    width: 100%;
+    float: right;
+    }
+
+#maincen #cen {
+    width: 600px;
+    float: left;
+    margin: 2px;
+    
+  
+}
+
+#maincen #izq {
+    width: 300px;
+    float: left;
+    margin: 2px;
+}
+
+#maincen #izq_tabla {
+    width: 100px;
+    float: left;
+    margin: 2px;
+}
+
+
+#maininf {
+    width: 100%;
+    margin: 3px auto;
+    clear: both;
+
+}
+
+

@@ -1,0 +1,44 @@
+/*********************************************************
+   IE8 and below does not recognize media queries
+   so we need to copy code from media query into this file
+
+   Hopefully you are using a pre-processor and only maintaining
+   this code in one place.
+**********************************************************/
+
+.nav li {
+  width: 130px;
+  border-bottom: none;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  display: inline-block;
+  margin-right: -4px;
+}
+
+.nav a {
+  border-bottom: none;
+}
+
+.nav > ul > li {
+  text-align: center;
+}
+
+.nav > ul > li > a {
+  padding-left: 0;
+}
+
+/* Sub Menus */
+.nav li ul {
+  position: absolute;
+  display: none;
+  width: inherit;
+}
+
+.nav li:hover ul {
+  display: block;
+}
+
+.nav li ul li {
+  display: block;
+}

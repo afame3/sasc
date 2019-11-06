@@ -1,0 +1,116 @@
+<?php
+session_start();
+if(!isset($_SESSION["idusuario"]) || $_SESSION["idusuario"]==null){
+	print "<script>alert(\"Acceso invalido!\");window.location='login.php';</script>";
+}
+
+?>
+<html lang="en">
+	<head>
+		<title>.: HAV :.</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+
+    <body>
+		<?php include "views/navbar.phtml"; ?>	
+        <div class="container">
+
+				<h2>Actualizar SN/ST de Automatizaci&oacute;n</h2>
+				
+				<form action="?action=<?php echo $req->idrequerimiento > 0 ? 'actualizar' : 'registrar'; ?>" method="post" >
+					<input type="hidden" name="idrequerimiento" value="<?php echo $req->__GET('idrequerimiento'); ?>" />
+                   
+                    <table class="table table-bordered table-striped">
+
+						<tr>
+                            <th>sol_negocio</th>
+                            <td><input type="text" name="sol_negocio" value="<?php echo $req->__GET('sol_negocio'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>sol_tecnico</th>
+                            <td><input type="text" name="sol_tecnico" value="<?php echo $req->__GET('sol_tecnico'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>nombre_requerimiento</th>
+                            <td><input type="text" name="nombre_requerimiento" value="<?php echo $req->__GET('nombre_requerimiento'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>fecha_inicio_planificado</th>
+                            <td><input type="text" name="fecha_inicio_planificado" value="<?php echo $req->__GET('fecha_inicio_planificado'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>fecha_fin_planificado</th>
+                            <td><input type="text" name="fecha_fin_planificado" value="<?php echo $req->__GET('fecha_fin_planificado'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>fecha_inicio_construccion</th>
+                            <td><input type="text" name="fecha_inicio_construccion" value="<?php echo $req->__GET('fecha_inicio_construccion'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>fecha_fin_construccion</th>
+                            <td><input type="text" name="fecha_fin_construccion" value="<?php echo $req->__GET('fecha_fin_construccion'); ?>" style="width:100%;" /></td>
+                        </tr>
+                        <tr>
+                            <th>tipo_construccion</th>
+                            <td>
+                                <select name="tipo_construccion" style="width:100%;">
+                                    <option value="1" <?php echo $req->__GET('tipo_construccion') == 1 ? 'selected' : ''; ?>>ON</option>
+                                    <option value="0" <?php echo $req->__GET('tipo_construccion') == 0 ? 'selected' : ''; ?>>OFF</option>
+                                </select>
+                            </td>
+						</tr>
+						<tr>
+                            <th>idaplicativo</th>
+                            <td><input type="text" name="idaplicativo" value="<?php echo $req->__GET('idaplicativo'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+						<tr>
+                            <th>codigo_aplicativo</th>
+                            <td><input type="text" name="codigo_aplicativo" value="<?php echo $req->__GET('codigo_aplicativo'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>idestado</th>
+                            <td><input type="text" name="idestado" value="<?php echo $req->__GET('idestado'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>idestado_cq</th>
+                            <td><input type="text" name="idestado_cq" value="<?php echo $req->__GET('idestado_cq'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<!--tr>
+                            <th>idproveedor</th>
+                            <td><input type="text" name="idproveedor" value="<?php echo $req->__GET('idproveedor'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr-->						<tr>
+                            <th>nombre_proveedor</th>
+                            <td><input type="text" name="nombre_proveedor" value="<?php echo $req->__GET('nombre_proveedor'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>horas_construccion</th>
+                            <td><input type="text" name="horas_construccion" value="<?php echo $req->__GET('horas_construccion'); ?>" style="width:100%;" /></td>
+                        </tr>
+						<tr>
+                            <th>indicador SGE</th>
+                            <td>
+                                <select name="indicador" style="width:100%;">
+                                    <option value="1" <?php echo $req->__GET('indicador') == 1 ? 'selected' : ''; ?>>SI</option>
+                                    <option value="0" <?php echo $req->__GET('indicador') == 0 ? 'selected' : ''; ?>>NO</option>
+                                </select>
+                            </td>
+						</tr>
+                        <tr>
+                            <th colspan="2" style="text-align:left;"><button type="submit" class="btn btn-default">Guardar</button>
+							<input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()">
+							<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://localhost/hav/home.php' ">
+							</th>
+                        </tr>
+                    </table>
+                </form>				
+		
+
+        </div>
+
+    </body>
+</html>

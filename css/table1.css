@@ -1,0 +1,12 @@
+body {font-family: Tahoma,Verdana,Aria;text-align:center;}
+
+table {font-family: Tahoma,Verdana,Aria;
+    font-size: 10px;    margin: 10px;     width: 1000px; text-align: center;    border-collapse: collapse; }
+
+th {font-size: 10px;     font-weight: normal;     padding: 8px;     background: #b9c9fe; position: center;
+    border-top: 4px solid #aabcfe;    border-bottom: 0px solid #fff; color: #2a3c48; font-weight:bold;}
+
+td {    text-align: center; padding: 8px;     background: #e8edff;     border-bottom: 0px solid #2a3c48;
+    color: #2a3c48;    border-top: 0px solid transparent; }
+
+tr:hover td { background: #FA923C; color: #fff;}

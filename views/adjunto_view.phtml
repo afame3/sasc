@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="./css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="./css/component.css" />
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		
+		<script src="./js/modernizr.custom.js"></script>
+		<script language='JavaScript'>
+		function enviaycierra(){
+			if (confirm('Dar "Cancelar" si tiene campos en blanco, de lo contrario "Aceptar"')){
+				document.form1.submit();
+					alert("Se actualizó la cotización");
+				window.opener.document.location.reload(); //refresca la pagina principal
+				window.close(); //cierro el pop up
+			}
+		}
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+
+    <body>
+		<?php include "views/navbarpopup.phtml"; ?>	
+        <div class="container">
+		
+		<header>	
+			<h2>Adjuntar Cotización</h2>
+				<form enctype='multipart/form-data'  method='post'>
+					<table width="200" border="1" align="center">
+					<tr>
+							<td><input name='uploadedfile' type='file' value='Seleccionar'></td>
+							<td><input type='submit' value='Subir archivo'></td>
+					</tr>
+					</table>
+					<!--input align="right" type="button"  value="Cerrar" class="btn btn-default" onclick="window.close();"-->
+				</form>
+				<?php
+					if (!isset($_FILES['uploadedfile']['name'])){
+						$_FILES['uploadedfile']['name'] = '';
+					}
+					$target_path = "manual/";
+					$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+					if (!isset($_FILES['uploadedfile']['tmp_name'])){
+						$_FILES['uploadedfile']['tmp_name'] = '';
+					}
+					if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) 
+					{
+					?>
+					<div align="center">
+					<?php
+					echo "<span style='color:green;'>El archivo ". basename( $_FILES['uploadedfile']['name']). " ha sido subido</span><br>";
+					$archivo=basename( $_FILES['uploadedfile']['name']);
+					//echo $archivo;
+					$explode= explode('.', $archivo);
+					$detalle_cotizacion_condicion=array_pop($explode);
+					//echo $detalle_cotizacion_condicion;
+					//echo $_FILES['uploadedfile']['type'];
+					//echo "http://localhost/pruebas/uploads/uploads/". basename( $_FILES['uploadedfile']['name']);
+					//$ruta=basename( $_FILES['uploadedfile']['name']);
+					//$ruta="http://qtctsqlc01/automatizacion/manual/". basename( $_FILES['uploadedfile']['name']);
+					
+					//ruta desarrollo
+					//$detalle_cotizacion_adjunto="http://localhost/sasc/manual/". basename( $_FILES['uploadedfile']['name']);
+					//ruta producción 
+					$detalle_cotizacion_adjunto="http://culturaqhse.com/sasc/manual/". basename( $_FILES['uploadedfile']['name']);
+					
+					//echo $man->__GET('ruta');
+					}else{
+					?>
+					</div>
+					
+					<!--
+					<script languaje="javascript">
+						alert('<?php echo "Por favor seleccionar su archivo";?>');
+					</script>
+					-->
+					<?php
+					}
+				?>	
+				
+                <!--cortar formulario-->
+				<form name="form1" action="?action=<?php echo $dco->iddetalle_cotizacion > 0 ? 'actualizar' : 'registrar'?>" enctype='multipart/form-data' method="post" class="pure-form pure-form-stacked" style="margin-bottom:30px;">
+					<input type="hidden" name="iddetalle_cotizacion" value="<?php echo $dco->__GET('iddetalle_cotizacion'); ?>" />
+                    
+                    <table style="width:500px;" align="center">
+                    <!--tr>
+                        <th>adjunto</th>
+                        <td><input type="text" name="detalle_cotizacion_adjunto" value="<?php echo $dco->__GET('detalle_cotizacion_adjunto_pdf'); ?>" style="width:100%;" required/ ></td>
+                    </tr-->
+					<tr>
+							<!--th width="141" style="text-align:left;">Ruta</th-->
+							<td><input name="detalle_cotizacion_adjunto_pdf" type="hidden" value="<?php echo $detalle_cotizacion_adjunto;?>" style="width:100%;" /></td>
+					</tr>
+					<tr>
+							<!--th width="141" style="text-align:left;">Ruta</th-->
+							<td><input name="detalle_cotizacion_adjunto_word" type="hidden" value="<?php echo $detalle_cotizacion_adjunto;?>" style="width:100%;" /></td>
+					</tr>
+					<tr>
+							<!--th width="141" style="text-align:left;">Ruta</th-->
+							<td><input name="detalle_cotizacion_adjunto_excel" type="hidden" value="<?php echo $detalle_cotizacion_adjunto;?>" style="width:100%;" /></td>
+					</tr>
+					<tr>
+							<!--th width="141" style="text-align:left;">Ruta</th-->
+							<td><input name="detalle_cotizacion_condicion" type="hidden" value="<?php echo $detalle_cotizacion_condicion;?>" style="width:100%;" /></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2">
+							<button type="submit" class="btn btn-default" onclick="javascript:enviaycierra();">Guardar</button>
+						</td>
+					</tr>
+                    </table>
+                </form>
+                
+				
+          </header>
+              </div>
+        
+
+</body>
+</html>

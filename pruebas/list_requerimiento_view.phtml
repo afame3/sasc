@@ -1,0 +1,98 @@
+<?php
+session_start();
+if(!isset($_SESSION["idusuario"]) || $_SESSION["idusuario"]==null){
+	print "<script>alert(\"Acceso invalido!\");window.location='login.php';</script>";
+}
+?>
+<html lang="en">
+	<head>
+		<title>.: HAV :.</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+		<!--Script para flitrado  -->
+		<script>
+			$(document).ready(function () {
+		   $('#entradafilter').keyup(function () {
+			  var rex = new RegExp($(this).val(), 'i');
+				$('.contenidobusqueda tr').hide();
+				$('.contenidobusqueda tr').filter(function () {
+					return rex.test($(this).text());
+				}).show();
+
+				})
+
+		});
+		</script>
+		
+	</head>
+
+    <body>
+		<?php include "views/navbar.phtml"; ?>	
+        <div class="container">
+
+				<h2>SN/ST de automatizaci&oacute;n</h2>	
+		<div class="input-group"> <span class="input-group-addon">Filtrado</span>
+			<input id="entradafilter" type="text" class="form-control">
+		</div>				
+							
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        
+                            <th>SN</th>
+							<th>ST</th>
+                  
+                            <th>FI Planificada</th>
+							<th>FF Planificada</th>
+							
+							<th>Tipo Construcci&oacute;n</th>
+							
+							<th>Aplicativo</th>
+							<th>Estado</th>
+							
+							<th>Proveedor</th>
+							<th>Horas</th>
+							<th>Indicador GSE</th>
+							<th></th>
+							
+                        </tr>
+                    </thead>
+					<tbody class="contenidobusqueda">
+                    <?php foreach($model->Listar() as $r): ?>
+                        <tr>
+                        
+                            <td><?php echo $r->__GET('sol_negocio'); ?></td>
+							<td><?php echo $r->__GET('sol_tecnico'); ?></td>
+                        
+                            <td><?php echo $r->__GET('fecha_inicio_planificado'); ?></td>
+							<td><?php echo $r->__GET('fecha_fin_planificado'); ?></td>
+					
+							<td><?php echo $r->__GET('tipo_construccion')==1?'ON':'OFF'; ?></td>
+							<td><?php echo $r->__GET('aplicativo'); ?></td>
+							<td><?php echo $r->__GET('estado'); ?></td>
+							
+							<td><?php echo $r->__GET('proveedor'); ?></td>
+							<td><?php echo $r->__GET('horas_construccion'); ?></td>
+							<td><?php echo $r->__GET('indicador')==1?'<img src="./images/check.png" alt="chek" width="32" height="32" border="0" />':'<img src="./images/x.png" alt="chek" width="32" height="32" border="0" />'; ?></td>
+							<td><center><a href="detail_requerimiento.php?action=editar&idrequerimiento=<?php echo $r->idrequerimiento; ?>" onClick="window.open(this.href, this.target, 'width=300,height=400'); return false;" class="btn btn-default" type="button">Editar</a></center></td>
+							
+                        </tr>
+                    <?php endforeach; ?>
+					</tbody>
+					</table>
+						<input align="right" type="button"  value="Regresar" class="btn btn-default" onclick="history.back()">
+						
+						<!--desa-->
+						<input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://localhost/hav/home.php' ">
+						<!--prod-->
+						<!--input align="right" type="button"  value="Cancelar" class="btn btn-default" onclick=" location.href='http://qtctsqlc01:8888/hav/' "-->							
+              </div>
+
+
+    </body>
+</html>
