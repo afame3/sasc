@@ -33,7 +33,7 @@
 		<?php include "views/navbarpopup.phtml"; ?>	
         <div class="container">
 		<header>	
-			<h2>Actualizar Detalle Cotización <?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?></h2>
+			<h2>Actualizar Detalle Cotización <?php echo isset($_GET["idcotizacion"]) ? $_GET["idcotizacion"] : NULL; ?>
 				
                 <form name="form1" action="?action=<?php echo $dco->iddetalle_cotizacion > 0 ? 'actualizar' : 'registrar'; ?>" method="post" >
 						
@@ -91,10 +91,10 @@
 						</td>
                         <th></th>
                     </tr>
-					<tr>
+					<!--tr>
                         <th>condicion</th>
                         <td><input type="text" name="detalle_cotizacion_condicion" value="<?php echo $dco->__GET('detalle_cotizacion_condicion'); ?>" style="width:100%;" required/ ></td>
-                    </tr>
+                    </tr-->
 					<tr>
                         <th>gasto</th>
                         <td><input type="text" name="detalle_cotizacion_gasto" value="<?php echo $dco->__GET('detalle_cotizacion_gasto'); ?>" style="width:100%;" required/ ></td>

@@ -256,14 +256,10 @@ where iddetalle_cotizacion= ?");
 						detalle_cotizacion_comentario        = ?,
 						detalle_cotizacion_fecha	=	?,
 						detalle_cotizacion_visita        = ?,
-						detalle_cotizacion_adjunto_pdf       = ?,
 						detalle_cotizacion_pago        = ?,
 						detalle_cotizacion_documento        = ?,
-						detalle_cotizacion_condicion        = ?,
 						detalle_cotizacion_gasto        = ?,
-						detalle_cotizacion_estado        = ?,
-						detalle_cotizacion_adjunto_word       = ?,
-						detalle_cotizacion_adjunto_excel      = ?
+						detalle_cotizacion_estado        = ?
 						
 					WHERE iddetalle_cotizacion = ?";
 
@@ -275,17 +271,16 @@ where iddetalle_cotizacion= ?");
 					$data->__GET('detalle_cotizacion_comentario'),
 					$detalle_cotizacion_fecha,
 					$data->__GET('detalle_cotizacion_visita'),
-					$data->__GET('detalle_cotizacion_adjunto_pdf'),
+					//$data->__GET('detalle_cotizacion_adjunto_pdf'),
 					$data->__GET('detalle_cotizacion_pago'),
 					$data->__GET('detalle_cotizacion_documento'),
-					$data->__GET('detalle_cotizacion_condicion'),
+					//$data->__GET('detalle_cotizacion_condicion'),
 					$data->__GET('detalle_cotizacion_gasto'),
 					$data->__GET('detalle_cotizacion_estado'),
-					$data->__GET('detalle_cotizacion_adjunto_word'),
-					$data->__GET('detalle_cotizacion_adjunto_excel'),
+					//$data->__GET('detalle_cotizacion_adjunto_word'),
+					//$data->__GET('detalle_cotizacion_adjunto_excel'),
 					$data->__GET('iddetalle_cotizacion')
-					
-					
+										
 					)
 				);
 		} catch (Exception $e) 
